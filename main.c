@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 
 /**
  * main - main function for monty interpreter
@@ -41,7 +42,7 @@ int main(int argc, char *argv[])
 				exit_free(stack);
 				exit(EXIT_FAILURE);
 			}
-			if (opcode != NULL && opcode[0] != '#')
+			if (opcode[0] != '#')
 				funcSelector(&stack, line_number, opcode);
 		}
 		free(globes.lineptr);
