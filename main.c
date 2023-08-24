@@ -58,7 +58,7 @@ void validate_argument_count(int argc)
 {
 	if (argc != 2)
 	{
-		fprintf(stderr, "USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 }
