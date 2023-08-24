@@ -16,14 +16,14 @@ int main(int argc, char *argv[])
 	int matches = 0;
 	unsigned int line_number = 0;
 
-	if (argc != 2)	/* if too many or too few arguments to monty exit fail */
+	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	globals.fileStream = NULL;
-	globals.fileStream = fopen(argv[1], "r"); /* not freed must close file */
-	if (globals.fileStream == NULL)	/* if file cant open then exit fail */
+	globals.fileStream = fopen(argv[1], "r");
+	if (globals.fileStream == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		fclose(globals.fileStream);
