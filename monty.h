@@ -43,7 +43,6 @@ void (*f)(stack_t **stack, unsigned int line_number);
 int main(int argc, char *argv[]);
 
 /* main helpers */
-void validate_argument_count(int argc);
 int emptySpace(void);
 void exit_free(stack_t *stack);
 void free_stack(stack_t *stack);

@@ -16,7 +16,11 @@ int main(int argc, char *argv[])
 	int matches = 0;
 	unsigned int line_number = 0;
 
-validate_argument_count(int argc);
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 	global.fStream = NULL;
 	global.fStream = fopen(argv[1], "r");
 	if (global.fStream == NULL)
@@ -46,21 +50,6 @@ validate_argument_count(int argc);
 	}
 	exit_free(stack);
 	return (0);
-}
-
-/**
- * validate_argument_count - checks if too many or too
- * few arguments to monty exit fail
- * @argc: number of arguments
- * Return: void
-*/
-void validate_argument_count(int argc)
-{
-	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n", argv[0]);
-		exit(EXIT_FAILURE);
-	}
 }
 
 /**
