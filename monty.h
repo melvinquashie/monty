@@ -43,6 +43,7 @@ void (*f)(stack_t **stack, unsigned int line_number);
 int main(int argc, char *argv[]);
 
 /* main helpers */
+void validate_argument_count(int argc);
 int emptySpace(void);
 void exit_free(stack_t *stack);
 void free_stack(stack_t *stack);
@@ -60,14 +61,14 @@ void nop(stack_t **stack, unsigned int line_number);
 /**
  * struct GlobalStruct - contains all globals
  * @data: int for push
- * @fm: file stream for monty file
- * @lineptr: pointer to char sting allocated by getline function
+ * @fStream: file stream for monty file
+ * @linePtr: pointer to char string allocated by getline function
  */
 struct GlobalStruct
 {
 	int data;
-	FILE *fm;
-	char *lineptr;
-} globes;
+	FILE *fStream;
+	char *linePtr;
+} global;
 
 #endif
