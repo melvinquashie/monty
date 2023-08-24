@@ -60,14 +60,14 @@ void nop(stack_t **stack, unsigned int line_number);
 /**
  * struct GlobalStruct - contains all globals
  * @data: int for push
- * @fm: file stream for monty file
- * @lineptr: pointer to char sting allocated by getline function
+ * @fileStream: file stream for monty file
+ * @linePtr: pointer to char sting allocated by getline function
  */
 struct GlobalStruct
 {
 	int data;
-	FILE *fm;
-	char *lineptr;
-} globes;
+	FILE *fileStream;
+	char *linePtr;
+} globals;
 
 #endif

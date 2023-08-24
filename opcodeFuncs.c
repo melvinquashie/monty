@@ -18,7 +18,7 @@ void push(stack_t **stack, unsigned int line_number __attribute__((unused)))
 		exit_free(*stack);
 		exit(EXIT_FAILURE);
 	}
-	tmp->n = globes.data;
+	tmp->n = globals.data;
 	tmp->prev = NULL;
 	tmp->next = NULL;
 	if (*stack != NULL)

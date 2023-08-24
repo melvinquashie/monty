@@ -21,21 +21,21 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	globes.fm = NULL;
-	globes.fm = fopen(argv[1], "r"); /* not freed must close file */
-	if (globes.fm == NULL)	/* if file cant open then exit fail */
+	globals.fileStream = NULL;
+	globals.fileStream = fopen(argv[1], "r"); /* not freed must close file */
+	if (globals.fileStream == NULL)	/* if file cant open then exit fail */
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		fclose(globes.fm);
+		fclose(globals.fileStream);
 		exit(EXIT_FAILURE);
 	}
-	globes.lineptr = NULL;
-	while ((read = getline(&globes.lineptr, &len, globes.fm)) != -1)
+	globals.linePtr = NULL;
+	while ((read = getline(&globals.linePtr, &len, globals.fileStream)) != -1)
 	{
 		line_number++;
 		if (!emptySpace())
 		{
-			matches = sscanf(globes.lineptr, "%s%d%1s", opcode, &globes.data, wrong);
+			matches = sscanf(globals.linePtr, "%s%d%1s", opcode, &globals.data, wrong);
 			if (matches != 2 && strcmp(opcode, "push") == 0)
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
@@ -45,8 +45,8 @@ int main(int argc, char *argv[])
 			if (opcode[0] != '#')
 				funcSelector(&stack, line_number, opcode);
 		}
-		free(globes.lineptr);
-		globes.lineptr = NULL;
+		free(globals.linePtr);
+		globals.linePtr = NULL;
 	}
 	exit_free(stack);
 	return (0);
@@ -76,9 +76,9 @@ void free_stack(stack_t *stack)
  */
 void exit_free(stack_t *stack)
 {
-	fclose(globes.fm);
-	if (globes.lineptr != NULL)
-		free(globes.lineptr);
+	fclose(globals.fileStream);
+	if (globals.linePtr != NULL)
+		free(globals.linePtr);
 	free_stack(stack);
 }
 
@@ -92,8 +92,8 @@ int emptySpace(void)
 	int i, j;
 	char *ws = "\r\n\t ";
 
-	for (i = 0; globes.lineptr[i] != '\0'; i++)
-		for (j = 0; ws[j] != '\0' && ws[j] != globes.lineptr[i]; j++)
+	for (i = 0; globals.linePtr[i] != '\0'; i++)
+		for (j = 0; ws[j] != '\0' && ws[j] != globals.linePtr[i]; j++)
 			if (ws[j] == '\n')
 				return (0);
 	return (1);
